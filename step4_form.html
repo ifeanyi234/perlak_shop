@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perlak Shop</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script>
+    function operateModal(message, show) {
+      var modal = document.getElementById("errorModal");
+      var modalContent = document.getElementById("modalContent");
+      modal.style.display = show ? "block" : "none";
+      modalContent.textContent = message;
+    }
+
+    function validateForm() {
+      var description = document.getElementById("description").value;
+      var typesOfProduct = document.getElementById("types_of_product").value;
+      var pricingInfo = document.getElementById("pricing_info").value;
+
+      if (description.trim() === "") {
+        operateModal("Description of Product/Service must be filled out", true);
+        return false;
+      }
+
+      if (typesOfProduct.trim() === "") {
+        operateModal("Categories/Types of Product must be filled out", true);
+        return false;
+      }
+
+      if (pricingInfo.trim() === "") {
+        operateModal("Pricing Information must be filled out", true);
+        return false;
+      }
+
+      return true;
+    }
+
+    window.onclick = function(event) {
+      if (event.target == document.getElementById("errorModal")) {
+        operateModal("", false);
+      }
+    }
+  </script>
+</head>
+<body>
+  <header class="header">
+    <div class="logo">
+      <a href="#" class="logo__link">
+        <img src="assets/img/logo_header.png" alt="Perlak Logo">
+      </a>
+    </div>
+    <div class="indicators">
+      <span class="indicator__icon"></span>
+      <span class="indicator__icon"></span>
+      <span class="indicator__icon"></span>
+      <span class="indicator__icon active"></span>
+      <span class="indicator__icon"></span>
+      <span class="indicator__icon"></span>
+    </div>
+  </header>
+  <main class="main">
+    <div class="main__img">
+      <img src="assets/img/form_img4.png" alt="" />
+    </div>
+    <form action="step5_form.html" class="main__form" onsubmit="return validateForm();">
+      <h1 class="main__form-heading m-b">Product/Service Information</h1>
+      <fieldset>
+        <label for="description">Description of Product/Service</label>
+        <textarea
+          name="textarea_name"
+          class="form__input"
+          rows="4"
+          cols="50"
+          id="description"
+        ></textarea>
+      </fieldset>
+      <fieldset>
+        <label for="types_of_product">Categories/Types of Product</label>
+        <input
+          type="text"
+          class="form__input"
+          id="types_of_product"
+        />
+      </fieldset>
+      <fieldset>
+        <label for="pricing_info">Pricing Information</label>
+        <input type="text" class="form__input" id="pricing_info" />
+      </fieldset>
+      <input type="submit" value="Next Page" />
+    </form>
+  </main>
+  <!-- Error Modal -->
+  <div id="errorModal" class="modal">
+    <div class="modal-content" id="modalContent">
+      <p>Click anywhere outside this box to close the modal.</p>
+    </div>
+  </div>
+</body>
+</html>

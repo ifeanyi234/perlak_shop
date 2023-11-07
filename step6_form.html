@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Perlak Shop</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="logo">
+        <a href="#" class="logo__link"
+          ><img src="assets/img/logo_header.png" alt="Perlak Logo"
+        /></a>
+      </div>
+      <div class="indicators">
+        <span class="indicator__icon"></span>
+        <span class="indicator__icon"></span>
+        <span class="indicator__icon"></span>
+        <span class="indicator__icon"></span>
+        <span class="indicator__icon"></span>
+        <span class="indicator__icon active"></span>
+      </div>
+    </header>
+    <main class="main">
+      <div class="main__img">
+        <img src="assets/img/form_img6.png" alt="" />
+      </div>
+      <form action="#" class="main__form" onsubmit="return validateForm();">
+        <h1 class="main__form-heading m-b">Contact Information</h1>
+        <fieldset>
+          <label for="business_addr">Business Address</label
+          ><input type="text" class="form__input" id="business_addr" />
+        </fieldset>
+        <fieldset>
+          <label for="city">City</label
+          ><input type="text" class="form__input" id="city" />
+        </fieldset>
+        <fieldset>
+          <label for="state_province">State/Province</label
+          ><input type="text" class="form__input" id="state_province" />
+        </fieldset>
+        <fieldset>
+          <label for="postal_code">Postal Code</label
+          ><input type="text" class="form__input" id="postal_code" />
+        </fieldset>
+        <fieldset>
+          <label for="country">Country</label
+          ><input type="text" class="form__input" id="country" />
+        </fieldset>
+        <fieldset class="terms">
+          <input type="checkbox" name="checkbox" id="checkbox" />
+          <label for="checkbox">I accept the Terms and Conditions</label>
+        </fieldset>
+        <p class="term_text">
+          By accepting these terms and conditions, you acknowledge and agree to
+          comply with the rules and guidelines governing our services. Please
+          review them carefully as they outline important information regarding
+          your use of our platform.
+        </p>
+        <input type="submit" value="Register" />
+      </form>
+    </main>
+    <!-- Error Modal -->
+    <div id="errorModal" class="modal">
+      <div class="modal-content" id="modalContent">
+        <p>Click anywhere outside this box to close the modal.</p>
+      </div>
+    </div>
+    <script>
+      function operateModal(message, show) {
+        var modal = document.getElementById("errorModal");
+        var modalContent = document.getElementById("modalContent");
+        modal.style.display = show ? "block" : "none";
+        modalContent.textContent = message;
+      }
+
+      function validateForm() {
+        var businessAddr = document.getElementById("business_addr").value;
+        var city = document.getElementById("city").value;
+        var stateProvince = document.getElementById("state_province").value;
+        var postalCode = document.getElementById("postal_code").value;
+        var country = document.getElementById("country").value;
+        var checkbox = document.getElementById("checkbox");
+
+        if (businessAddr.trim() === "") {
+          operateModal("Business Address must be filled out", true);
+          return false;
+        }
+
+        if (city.trim() === "") {
+          operateModal("City must be filled out", true);
+          return false;
+        }
+
+        if (stateProvince.trim() === "") {
+          operateModal("State/Province must be filled out", true);
+          return false;
+        }
+
+        if (postalCode.trim() === "") {
+          operateModal("Postal Code must be filled out", true);
+          return false;
+        }
+
+        if (country.trim() === "") {
+          operateModal("Country must be filled out", true);
+          return false;
+        }
+
+        if (!checkbox.checked) {
+          operateModal("You must accept the Terms and Conditions", true);
+          return false;
+        }
+
+        return true;
+      }
+
+      window.onclick = function (event) {
+        if (event.target == document.getElementById("errorModal")) {
+          operateModal("", false);
+        }
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perlak Shop</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script>
+    function operateModal(message, show) {
+      var modal = document.getElementById("errorModal");
+      var modalContent = document.getElementById("modalContent");
+      modal.style.display = show ? "block" : "none";
+      modalContent.textContent = message;
+    }
+
+    function validateForm() {
+      var username = document.getElementById("username").value;
+      var password = document.getElementById("password").value;
+      var confirmPassword = document.getElementById("conf_pass").value;
+
+      if (username === "") {
+        operateModal("Username must be filled out", true);
+        return false;
+      }
+
+      if (password === "") {
+        operateModal("Password must be filled out", true);
+        return false;
+      }
+
+      if (confirmPassword === "") {
+        operateModal("Confirm Password must be filled out", true);
+        return false;
+      }
+
+      if (password !== confirmPassword) {
+        operateModal("Password and Confirm Password do not match", true);
+        return false;
+      }
+
+      return true;
+    }
+
+    window.onclick = function(event) {
+      if (event.target == document.getElementById("errorModal")) {
+        operateModal("", false);
+      }
+    }
+  </script>
+</head>
+<body>
+  <header class="header">
+    <div class="logo">
+      <a href="#" class="logo__link">
+        <img src="assets/img/logo_header.png" alt="Perlak Logo">
+      </a>
+    </div>
+    <div class="indicators">
+      <span class="indicator__icon"></span>
+      <span class="indicator__icon"></span>
+      <span class="indicator__icon active"></span>
+      <span class="indicator__icon"></span>
+      <span class="indicator__icon"></span>
+      <span class="indicator__icon"></span>
+    </div>
+  </header>
+  <main class="main">
+    <div class="main__img">
+      <img src="assets/img/form_img3.png" alt="" />
+    </div>
+    <form action="step4_form.html" class="main__form" onsubmit="return validateForm();">
+      <h1 class="main__form-heading m-b">Account Information</h1>
+      <fieldset><label for="username">Username</label><input type="text" class="form__input" id="username" /></fieldset>
+      <fieldset><label for="password">Password</label><input type="password" class="form__input" id="password" /></fieldset>
+      <fieldset><label for="conf_pass">Confirm Password</label><input type="password" class="form__input" id="conf_pass" /></fieldset>
+      <input type="submit" value="Next Page"/>
+    </form>
+  </main>
+  <!-- Error Modal -->
+  <div id="errorModal" class="modal">
+    <div class="modal-content" id="modalContent">
+      <p>Click anywhere outside this box to close the modal.</p>
+    </div>
+  </div>
+</body>
+</html>

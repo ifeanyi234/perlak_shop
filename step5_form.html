@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perlak Shop</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script>
+    function operateModal(message, show) {
+      var modal = document.getElementById("errorModal");
+      var modalContent = document.getElementById("modalContent");
+      modal.style.display = show ? "block" : "none";
+      modalContent.textContent = message;
+    }
+
+    function validateForm() {
+      var businessLicenseInput = document.getElementById("business-license-input").value;
+      var idVerificationInput = document.getElementById("id-ver-input").value;
+
+      if (businessLicenseInput === "") {
+        operateModal("Business License/Registration Documents must be uploaded", true);
+        return false;
+      }
+
+      if (idVerificationInput === "") {
+        operateModal("Identity Verification Documents must be uploaded", true);
+        return false;
+      }
+
+      return true;
+    }
+
+    window.onclick = function(event) {
+      if (event.target == document.getElementById("errorModal")) {
+        operateModal("", false);
+      }
+    }
+  </script>
+</head>
+<body>
+  <header class="header">
+    <div class="logo">
+      <a href="#" class="logo__link">
+        <img src="assets/img/logo_header.png" alt="Perlak Logo">
+      </a>
+    </div>
+    <div class "indicators">
+      <span class="indicator__icon"></span>
+      <span class="indicator__icon"></span>
+      <span class="indicator__icon"></span>
+      <span class="indicator__icon"></span>
+      <span class="indicator__icon active"></span>
+      <span class="indicator__icon"></span>
+    </div>
+  </header>
+  <main class="main">
+    <div class="main__img">
+      <img src="assets/img/form_img5.png" alt="" />
+    </div>
+    <form action="step6_form.html" class="main__form" onsubmit="return validateForm();">
+      <h1 class="main__form-heading m-b">Upload Documents</h1>
+      <label for="">Business License/Registration Documents</label>
+      <fieldset class="file_upload" type="file">
+        <fieldset>
+          <label for="business-license-input">
+            <p>Drag and drop files here</p>
+            <br />
+            <p>or</p>
+            <br />
+            <button class="browse-button"  id="custom-upload-button">Browse Files</button>
+          </label>
+          <input
+            type="file"
+            id="business-license-input"
+            class="form__input"
+            style="display: none;"
+            required
+          />
+        </fieldset>
+      </fieldset>
+
+      <label for="">Identity Verification Documents e.g Passport, Driver License</label>
+      <fieldset class="file_upload" type="file">
+        <fieldset>
+          <label for="id-ver-input">
+            <p>Drag and drop files here</p>
+            <br />
+            <p>or</p>
+            <br />
+            <button class="browse-button"  id="custom-upload-button">Browse Files</button>
+          </label>
+          <input
+            type="file"
+            id="id-ver-input"
+            class="form__input"
+            style="display: none;"
+            required
+          />
+        </fieldset>
+      </fieldset>
+
+      <input type="submit" value="Next Page" />
+    </form>
+  </main>
+  <!-- Error Modal -->
+  <div id="errorModal" class="modal">
+    <div class="modal-content" id="modalContent">
+      <p>Click anywhere outside this box to close the modal.</p>
+    </div>
+  </div>
+  <script>
+    document.getElementById("custom-upload-button").addEventListener("click", function () {
+      document.getElementById("business-license-input").click();
+    });
+  </script>
+</body>
+</html>
